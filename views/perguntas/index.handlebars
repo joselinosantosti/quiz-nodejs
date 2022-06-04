@@ -1,0 +1,87 @@
+<div class="dropdown show">
+	<a class="btn bg-purple dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+		aria-haspopup="true" aria-expanded="false">
+		Categorias
+	</a>
+
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		{{#each categoria}}
+		<a class="dropdown-item" href="#">{{titulo}}</a>
+		<a class="dropdown-item" href="#">Engenharia de software</a>
+		<a class="dropdown-item" href="#">Segurança da informação</a>
+		{{/each}}
+	</div>
+</div>
+
+{{#each perguntas}}
+<div class="card mt-3 bg-danger  text-light">
+	<div class="card-body">
+
+		<div class="row">
+			<div class="col-12">
+				<h1>{{pergunta}}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card mt-3">
+	<div class="card-body bg-purple resposta" onclick="responder('a')">
+		<h1>A) {{alternativa1}}</h1>
+	</div>
+</div>
+
+<div class="card mt-3">
+	<div class="card-body bg-purple resposta" onclick="responder('b')">
+		<h1>B) {{alternativa2}}</h1>
+	</div>
+</div>
+
+<div class="card mt-3">
+	<div class="card-body bg-purple resposta" onclick="responder('c')">
+		<h1>C) {{alternativa3}}</h1>
+	</div>
+</div>
+
+<div class="card mt-3">
+	<div class="card-body bg-purple resposta" onclick="responder('d')">
+		<h1>D) {{alternativa4}}</h1>
+	</div>
+</div>
+<input type="hidden" id="res" name="res" value="{{resposta}}">
+
+{{else}}
+<h4 class="mt-3">Nenhuma pergunta cadastrada</h4>
+{{/each}}
+
+<script>
+	function responder(res) {
+		r = document.getElementById('res').value
+		if (r == res) {
+			$('#modalPergunta').modal('show')
+		} else {
+			alert('Erro')
+		}
+	}
+</script>
+
+<!-- Modal Certo e Errado -->
+<div class="modal fade" id="modalPergunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div id="modalHeader">
+				<h5 class="modal-title" id="modalTitulo">Certa resposta!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="modalTexto">
+				Erro
+			</div>
+			<div class="modal-footer">
+				<button id="btnModal" type="button" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
